@@ -7,3 +7,5 @@ How to run:
     npm install -g nodemon # needs root
     npm install
     node bin/www
+
+Site will be live at http://localhost:3001
