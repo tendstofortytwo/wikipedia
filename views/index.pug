@@ -1,0 +1,54 @@
+doctype html
+html
+	head
+		title Wikipedia - The free encyclopedia.
+		link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Roboto:300,500,700')
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		link(rel='stylesheet', href='/stylesheets/home.css')
+	body
+		section#hero
+			img.logo-big(src='/images/logo.png')
+			form.search(action='/search', method='get')
+				input(type='text', name='term', placeholder='Search', autocomplete='off')
+				button(type='submit')
+					img(src='/images/search.png', alt='Search')
+
+			h1.title Welcome to 
+				strong Wikipedia
+			h3 The free encyclopedia.
+		section#trending
+			h2 Trending articles
+			div.articles
+				div.article.small
+					img(src='/images/musk.jpg')
+					div.text-container
+						div.reason Popularly visited
+						h3 Elon Musk
+						div.hidden-text
+							p Elon Musk is the mind behind many revolutionary companies like SpaceX.
+							a.article-link(href='/page/Elon%20Musk') Visit page
+				div.article.small
+					img(src='/images/adams.jpg')
+					div.text-container
+						div.reason Popularly edited
+						h3 Douglas Adams
+						div.hidden-text
+							p Douglas Adams is the author of the Hitchhiker's Guide to the Galaxy.
+							a.article-link(href='/page/Douglas%20Adams') Visit page
+				div.article.big
+					img(src='/images/kevin.jpg')
+					div.text-container
+						div.reason Article of the day
+						h3 Kevin Mitnick
+						div.hidden-text
+							p Kevin Mitnick is the resident security analyst and our own God.
+							a.article-link(href='/page/Kevin%20Mitnick') Visit page
+		footer
+			div.left
+				a(href='#') Privacy Policy
+				a(href='#') Terms of Use
+			div.right
+				a(href='#') Donate
+				a(href='#') Help
+		script(src='/javascripts/lib/jquery.js')
+		script(src='/javascripts/home.js')

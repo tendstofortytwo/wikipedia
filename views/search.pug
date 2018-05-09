@@ -1,0 +1,55 @@
+doctype html
+html
+	head
+		title Results for !{term} - Wikipedia
+		link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Roboto:300,400,700')
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		link(rel='stylesheet', href='/stylesheets/search.css')
+	body
+		header
+			div.left-side
+				img.logo(src='/images/logo.png')
+
+			form.search(action='/search', method='get')
+				input(type='text', name='term', placeholder='Search', value=term)
+				button(type='submit')
+					img(src='/images/search.png', alt='Search')
+
+		aside.left-sidebar
+			div.links-container
+				a.header-link.bookmarks-all(href='#')
+					span All bookmarks
+					img(src='/images/dropdown.png')
+				nav.inner-links.inner-bookmarks
+
+		main
+			h1 Results for !{term}:
+
+			for result in results
+				- var encoded = encodeURI(result.title);
+				a.search-result(href='/page/' + encoded)
+					h2= result.title
+					- var url = 'https://wikipedia.org/page/' + result.title.replace(/\s/g, '%20');
+					p.link= url
+					p !{result.snippet}
+
+		div.actions-bar.closed
+			div.action-heading
+				h3 Notes
+				div.action-button
+					div.action-icon
+			div.saved-notes
+				div.notes
+		script(src='/javascripts/lib/jquery.js')
+		script.
+			$('img.logo').on('click', function() { location.href='/'; });
+		script(src='/javascripts/collapsinglinks.js')
+		script(src='/javascripts/bookmarks.js')
+		script(src='/javascripts/lib/rangy-core.js')
+		script(src='/javascripts/lib/rangy-selectionsaverestore.js')
+		script(src='/javascripts/lib/rangy-classapplier.js')
+		script(src='/javascripts/lib/rangy-highlighter.js')
+		script(src='/javascripts/lib/rangy-serializer.js')
+		script(src='/javascripts/highlights.js')
+		block scripts
+		footer

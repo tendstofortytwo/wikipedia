@@ -1,0 +1,77 @@
+doctype html
+html
+	head
+		title
+			block title
+			|  - Wikipedia
+		link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Roboto:300,400,700')
+		link(rel='stylesheet', href='/stylesheets/style.css')
+	body
+		header
+			div.left-side
+				img.logo(src='/images/logo.png')
+				div.article-links
+					a(href='#') Article
+					a(href='#') Talk
+					a(href='#') Donate
+
+			form.search(action='/search', method='get')
+				input(type='text', name='term', placeholder='Search')
+				button(type='submit')
+					img(src='/images/search.png', alt='Search')
+		main
+			block content
+		aside.left-sidebar
+			a.bookmark-link(href='#')
+				span
+					span.bookmark Bookmark
+					|&nbsp;this
+				img(src='/images/bookmark.png')
+			div.links-container
+				a.header-link.bookmarks-all(href='#')
+					span All bookmarks
+					img(src='/images/dropdown.png')
+				nav.inner-links.inner-bookmarks
+
+			a.summary-link(href='#')
+				span Summarize
+				img.loader(src='/images/loader.png')
+				img(src='/images/summary.png')
+
+			div.links-container
+				a.header-link.contents-link(href='#')
+					span Contents
+					img(src='/images/dropdown.png')
+				nav.inner-links.inner-contents
+					block contentlinks
+
+		if !removeRightBar
+			aside.right-sidebar
+				block photo
+				div.information
+					table.infobox
+						block info
+
+		div.actions-bar.closed
+			div.action-heading
+				h3 Notes
+				div.action-button
+					div.action-icon
+			div.saved-notes
+				div.notes
+			div.iframe-container
+				iframe(src='data:text/html, ')
+			
+		script(src='/javascripts/lib/jquery.js')
+		script.
+			$('img.logo').on('click', function() { location.href='/'; });
+		script(src='/javascripts/collapsinglinks.js')
+		script(src='/javascripts/bookmarks.js')
+		script(src='/javascripts/lib/rangy-core.js')
+		script(src='/javascripts/lib/rangy-selectionsaverestore.js')
+		script(src='/javascripts/lib/rangy-classapplier.js')
+		script(src='/javascripts/lib/rangy-highlighter.js')
+		script(src='/javascripts/lib/rangy-serializer.js')
+		script(src='/javascripts/highlights.js')
+		block scripts
+		footer

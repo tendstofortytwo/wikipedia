@@ -1,0 +1,28 @@
+doctype html
+html
+	head
+		title Bookmarks
+		link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Roboto:300,400,700')
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		link(rel='stylesheet', href='/stylesheets/search.css')
+	body
+		header
+			div.left-side
+				img.logo(src='/images/logo.png')
+
+			form.search(action='/search', method='get')
+				input(type='text', name='term', placeholder='Search')
+				button(type='submit')
+					img(src='/images/search.png', alt='Search')
+
+		main
+			h1 Bookmarks
+			div.bookmarks
+
+			
+		script(src='/javascripts/lib/jquery.js')
+		script(src='/javascripts/bookmarks.js')
+		script.
+			$('img.logo').on('click', function() { location.href='/'; });
+		block scripts
+		footer

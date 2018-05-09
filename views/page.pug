@@ -1,0 +1,17 @@
+extends layout
+
+block title
+	| !{title}
+
+block content
+	if text
+		div.content 
+			h1 !{title}
+			| !{text}
+	else
+		div.content
+			block text
+
+
+block scripts
+	script(src='/javascripts/page.js')
