@@ -24,26 +24,28 @@ $('body').on('click', 'nav.inner-links a', function(e) {
 $('.summary-link').on('click', function(e) {
 	e.preventDefault();
 
-	$('.loader').css('opacity', '1');
+	if($('body').find('.summary-output').length == 0) {
+		$('.loader').css('opacity', '1');
 
-	$.post('/summary', {
-		text: $('main').text()
-	}, function(data) {
-		var output = $('<div>');
-		output.addClass('summary-output');
-		output.html('<p>' + data['sm_api_content'].replace(/\n/g, '</p><p>') + '</p>');
+		$.post('/summary', {
+			text: $('main').text()
+		}, function(data) {
+			var output = $('<div>');
+			output.addClass('summary-output');
+			output.html('<p>' + data['sm_api_content'].replace(/\n/g, '</p><p>') + '</p>');
 
-		$('.loader').css('opacity', '0');
-		output.insertBefore($('main h1'));
-		var maxh = output.height();
-		output.addClass('hidden');
+			$('.loader').css('opacity', '0');
+			output.insertBefore($('main h1'));
+			var maxh = output.height();
+			output.addClass('hidden');
 
-		setTimeout(function() {
-			output.animate({
-				height: maxh+16
-			}, 250);
-		}, 100);
-	});
+			setTimeout(function() {
+				output.animate({
+					height: maxh+16
+				}, 250);
+			}, 100);
+		});
+	}
 });
 
 // </summary>
